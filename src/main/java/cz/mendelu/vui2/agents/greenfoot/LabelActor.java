@@ -7,12 +7,26 @@ import java.awt.*;
 
 public class LabelActor extends Actor {
 
-    public LabelActor(String label) {
-        setLabel(label);
+    private String label;
+    private int value;
+
+    public LabelActor(String label, int value) {
+        this.label = label;
+        this.value = value;
+        this.updateImage();
     }
 
-    public void setLabel(String label) {
-        GreenfootImage image = new GreenfootImage(label, 12, Color.WHITE, Color.BLACK);
+    public void update(int diff) {
+        value += diff;
+        updateImage();
+    }
+
+    private void updateImage() {
+        GreenfootImage image = new GreenfootImage(label + value, 12, Color.WHITE, Color.BLACK);
         setImage(image);
+    }
+
+    public int getValue() {
+        return value;
     }
 }

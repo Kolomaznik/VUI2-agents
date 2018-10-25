@@ -1,6 +1,7 @@
 package cz.mendelu.vui2.agents.greenfoot;
 
 import cz.mendelu.vui2.agents.Action;
+import cz.mendelu.vui2.agents.gui.WorldLoader;
 import greenfoot.Actor;
 import greenfoot.Greenfoot;
 
@@ -33,16 +34,23 @@ public class AgentActor extends Actor {
         Action action = agent.doAction(wall, dirty, dock);
         if (action != null && actions.containsKey(action)) {
             actions.get(action).run();
-            RobotWorld.timeToLive -= 1;
-            RobotWorld.simulationLabel.setLabel("Simulation: " + RobotWorld.timeToLive);
+            RobotWorld.simulationLabel.update(-1);
+            RobotWorld.scoreLabel.update(-1);
         }
         if (getOneObjectAtOffset(0, 0, WallActor.class) != null) {
+            setImage("images/explosion.png");
+            Greenfoot.stop();
+        }
+        if (RobotWorld.simulationLabel.getValue() == 0) {
+            setImage("images/time-off.png");
+            finalScore();
             Greenfoot.stop();
         }
     }
 
     public void forward() {
         setLocation(getX() + direction.dx, getY() + direction.dy);
+        RobotWorld.traceActor.traceTo(getX(), getY());
     }
 
     public void turnLeft() {
@@ -59,10 +67,16 @@ public class AgentActor extends Actor {
         DirtyActor dirty = (DirtyActor) getOneObjectAtOffset(0,0, DirtyActor.class);
         if (dirty != null) {
             getWorld().removeObject(dirty);
+            RobotWorld.scoreLabel.update(100);
+            RobotWorld.traceActor.traceClean(true);
+        } else {
+            RobotWorld.traceActor.traceClean(false);
         }
     }
 
     public void turnOff() {
+        finalScore();
+        setImage("images/done.png");
         Greenfoot.stop();
     }
 
@@ -70,6 +84,12 @@ public class AgentActor extends Actor {
         String direction = this.direction.name().toLowerCase();
         String filename = "images/" + direction + ".png";
         setImage(filename);
+    }
+
+    private void finalScore() {
+        if (getOneObjectAtOffset(0, 0, DockActor.class) == null) {
+            RobotWorld.scoreLabel.update(-1000);
+        }
     }
 
 }

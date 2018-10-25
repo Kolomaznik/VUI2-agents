@@ -18,6 +18,8 @@ public class HumanAgent extends AbstractAgent {
                     return Action.TURN_RIGHT;
                 case "space":
                     return Action.CLEAN;
+                case "escape":
+                    return Action.TURN_OFF;
             }
         }
         return null;

@@ -6,6 +6,7 @@ import greenfoot.World;
 
 public class RobotWorld extends World {
 
+    public static int CELL_SIZE = 24;
     public static byte[][] world;
     public static AbstractAgent agent;
     public static int timeToLive;
@@ -13,13 +14,17 @@ public class RobotWorld extends World {
 
     public static LabelActor simulationLabel;
     public static LabelActor scoreLabel;
+    public static TraceActor traceActor;
 
     public RobotWorld() {
-        super(world[0].length, world.length, 24);
-        setPaintOrder(LabelActor.class, AgentActor.class, DockActor.class, DirtyActor.class, WallActor.class);
+        super(world[0].length, world.length, CELL_SIZE);
+        setPaintOrder(LabelActor.class, AgentActor.class, TraceActor.class, DockActor.class, DirtyActor.class, WallActor.class);
 
-        simulationLabel = new LabelActor("Simulation: " + timeToLive);
+        simulationLabel = new LabelActor("Simulation: ", timeToLive);
         addObject(simulationLabel, 2, 0);
+
+        scoreLabel = new LabelActor("Score: ", 0);
+        addObject(scoreLabel, 5, 0);
 
         setBackground("images/world-background.png");
         for (int r = 0; r < world.length; r++) {
@@ -30,12 +35,14 @@ public class RobotWorld extends World {
                 else if (world[r][c] == '_') {
                     addObject(new AgentActor(agent), c, r);
                     addObject(new DockActor(), c, r);
+
+                    traceActor = new TraceActor(world[0].length, world.length, c, r);
+                    addObject(traceActor, world[0].length / 2, world.length / 2);
                 }
                 else if (world[r][c] != '0') {
                     addObject(new DirtyActor(), c, r);
                 }
             }
         }
-
     }
 }

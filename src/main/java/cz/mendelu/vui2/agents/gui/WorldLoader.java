@@ -20,7 +20,7 @@ public class WorldLoader {
             }
 
             byte[][] result = new byte[buffer.get(0).length()][];
-            for (int i = 0; i < result.length; i++) {
+            for (int i = 0; i < buffer.size(); i++) {
                 line = buffer.get(i);
                 result[i] = line.getBytes();
             }

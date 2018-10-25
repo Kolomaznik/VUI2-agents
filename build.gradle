@@ -2,14 +2,16 @@ group 'bh.greenfoot'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'application'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+mainClassName = "JFXRunner"
+
 repositories {
     mavenCentral()
 }
-
 
 //create a single Jar with all dependencies
 task dist(type: Jar) {
