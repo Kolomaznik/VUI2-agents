@@ -21,6 +21,7 @@ public class AgentActor extends Actor {
         actions.put(Action.TURN_LEFT, this::turnLeft);
         actions.put(Action.TURN_RIGHT, this::turnRight);
         actions.put(Action.CLEAN, this::clean);
+        actions.put(Action.TURN_OFF, this::turnOff);
         updateImage();
     }
 
@@ -59,6 +60,10 @@ public class AgentActor extends Actor {
         if (dirty != null) {
             getWorld().removeObject(dirty);
         }
+    }
+
+    public void turnOff() {
+        Greenfoot.stop();
     }
 
     private void updateImage() {

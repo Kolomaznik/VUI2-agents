@@ -20,7 +20,7 @@ public class RobotWorld extends World {
 
         simulationLabel = new LabelActor("Simulation: " + timeToLive);
         addObject(simulationLabel, 2, 0);
-        
+
         setBackground("images/world-background.png");
         for (int r = 0; r < world.length; r++) {
             for (int c = 0; c < world[r].length; c++) {
