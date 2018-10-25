@@ -2,6 +2,7 @@ package cz.mendelu.vui2.agents.greenfoot;
 
 import cz.mendelu.vui2.agents.Action;
 import greenfoot.Actor;
+import greenfoot.Greenfoot;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -17,9 +18,10 @@ public class AgentActor extends Actor {
     public AgentActor(AbstractAgent agent) {
         this.agent = agent;
         actions.put(Action.FORWARD, this::forward);
-        actions.put(Action.FORWARD, this::turnLeft);
-        actions.put(Action.FORWARD, this::turnRight);
-        actions.put(Action.FORWARD, this::clean);
+        actions.put(Action.TURN_LEFT, this::turnLeft);
+        actions.put(Action.TURN_RIGHT, this::turnRight);
+        actions.put(Action.CLEAN, this::clean);
+        updateImage();
     }
 
     @Override
@@ -28,8 +30,13 @@ public class AgentActor extends Actor {
         boolean dirty = getOneObjectAtOffset(0, 0, DirtyActor.class) != null;
         boolean dock = getObjectsAtOffset(0,0, DockActor.class) != null;
         Action action = agent.doAction(wall, dirty, dock);
-        if (action != null) {
+        if (action != null && actions.containsKey(action)) {
             actions.get(action).run();
+            RobotWorld.timeToLive -= 1;
+            RobotWorld.simulationLabel.setLabel("Simulation: " + RobotWorld.timeToLive);
+        }
+        if (getOneObjectAtOffset(0, 0, WallActor.class) != null) {
+            Greenfoot.stop();
         }
     }
 
@@ -39,10 +46,12 @@ public class AgentActor extends Actor {
 
     public void turnLeft() {
         direction = direction.onLeft();
+        updateImage();
     }
 
     public void turnRight() {
         direction = direction.onRight();
+        updateImage();
     }
 
     public void clean() {
@@ -52,5 +61,10 @@ public class AgentActor extends Actor {
         }
     }
 
+    private void updateImage() {
+        String direction = this.direction.name().toLowerCase();
+        String filename = "images/" + direction + ".png";
+        setImage(filename);
+    }
 
 }

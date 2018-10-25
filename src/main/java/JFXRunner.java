@@ -1,5 +1,3 @@
-package cz.mendelu.vui2.agents;
-
 import javafx.application.Application;
 
 import javafx.fxml.FXMLLoader;
@@ -11,7 +9,7 @@ import java.io.IOException;
 
 public class JFXRunner extends Application {
 
-    public static void main(String[] args) {
+    public static void show(String[] args) {
         launch(args);
     }
 

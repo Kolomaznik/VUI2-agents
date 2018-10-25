@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fillWidth="false" spacing="8.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.mendelu.vui2.agents.gui.StartScene">
+<VBox fx:id="mainPanel" fillWidth="false" spacing="8.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.mendelu.vui2.agents.gui.StartScene">
    <children>
 
       <TitledPane collapsible="false" layoutX="42.0" layoutY="101.0" text="World and agent">

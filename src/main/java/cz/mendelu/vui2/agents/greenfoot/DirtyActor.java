@@ -5,6 +5,6 @@ import greenfoot.Actor;
 public class DirtyActor extends Actor {
 
     public DirtyActor() {
-        setImage("images/");
+        setImage("images/dirty.png");
     }
 }

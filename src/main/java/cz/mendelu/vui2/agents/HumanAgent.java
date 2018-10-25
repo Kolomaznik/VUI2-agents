@@ -8,11 +8,17 @@ public class HumanAgent extends AbstractAgent {
     @Override
     public Action doAction(boolean canMove, boolean dirty, boolean dock) {
         String key = Greenfoot.getKey();
-        switch (key) {
-            case "up": return Action.FORWARD;
-            case "left": return Action.TURN_LEFT;
-            case "right": return Action.TURN_RIGHT;
-            case "space": return Action.CLEAN;
+        if (key != null) {
+            switch (key) {
+                case "up":
+                    return Action.FORWARD;
+                case "left":
+                    return Action.TURN_LEFT;
+                case "right":
+                    return Action.TURN_RIGHT;
+                case "space":
+                    return Action.CLEAN;
+            }
         }
         return null;
     }

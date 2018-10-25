@@ -15,7 +15,7 @@ IDEA to make his learning easier.
 
 # Running your project in intellij
 
-If you use IntelliJ IDEA as your IDE, then the easiest way is to open the [`Runner`](https://github.com/benoitheinrich/greenfoot-runner-example/blob/master/src/main/java/bh/greenfoot/runner/Runner.java) 
+If you use IntelliJ IDEA as your IDE, then the easiest way is to open the [`cz.mendelu.vui2.agents.greenfoot.Runner`](https://github.com/benoitheinrich/greenfoot-runner-example/blob/master/src/main/java/bh/greenfoot/runner/cz.mendelu.vui2.agents.greenfoot.Runner.java) 
 class and to run it as an **Application**. 
 
 # Distributing your application

@@ -4,7 +4,7 @@ enum Direction {
 
     NORTH(0, -1),
     EAST(1, 0),
-    SOUNTH(0, -1),
+    SOUTH(0, -1),
     WEST(-1, 0);
 
     int dx, dy;
@@ -16,13 +16,13 @@ enum Direction {
 
     public Direction onLeft() {
         Direction[] values = values();
-        int ordinal = (ordinal() + 1) % values.length;
+        int ordinal = (values.length + ordinal() - 1) % values.length;
         return values[ordinal];
     }
 
     public Direction onRight() {
         Direction[] values = values();
-        int ordinal = (values.length + ordinal() - 1) % values.length;
+        int ordinal = (ordinal() + 1) % values.length;
         return values[ordinal];
     }
 }
