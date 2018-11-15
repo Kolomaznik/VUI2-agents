@@ -30,7 +30,7 @@ public class AgentActor extends Actor {
     public void act() {
         boolean wall = getOneObjectAtOffset(direction.dx, direction.dy, WallActor.class) != null;
         boolean dirty = getOneObjectAtOffset(0, 0, DirtyActor.class) != null;
-        boolean dock = getObjectsAtOffset(0,0, DockActor.class) != null;
+        boolean dock = getOneObjectAtOffset(0,0, DockActor.class) != null;
         Action action = agent.doAction(wall, dirty, dock);
         if (action != null && actions.containsKey(action)) {
             actions.get(action).run();
