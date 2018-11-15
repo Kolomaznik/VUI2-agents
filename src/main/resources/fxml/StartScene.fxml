@@ -25,7 +25,7 @@
             </HBox>
          </content>
       </TitledPane>
-      <TitledPane collapsible="false" prefHeight="8.0" prefWidth="338.0" text="Sumulation settings">
+      <TitledPane collapsible="false" prefHeight="8.0" prefWidth="338.0" text="Simulation settings">
          <content>
             <GridPane prefHeight="45.0" prefWidth="336.0">
                <children>

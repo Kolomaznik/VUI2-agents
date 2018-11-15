@@ -20,12 +20,25 @@ public class RobotWorld extends World {
         super(world[0].length, world.length, CELL_SIZE);
         setPaintOrder(LabelActor.class, AgentActor.class, TraceActor.class, DockActor.class, DirtyActor.class, WallActor.class);
 
+        // Test world external settings
+        if (agent == null) {
+            throw new IllegalStateException("Agent implementation is not set.");
+        }
+        if (timeToLive == 0) {
+            throw new IllegalStateException("Time to simulation is not set.");
+        }
+
+        // Set agent information about simulation.
+        agent.timeToSimulation = timeToLive;
+
+        // Create info labels
         simulationLabel = new LabelActor("Simulation: ", timeToLive);
         addObject(simulationLabel, 2, 0);
 
         scoreLabel = new LabelActor("Score: ", 0);
         addObject(scoreLabel, 5, 0);
 
+        // Create world map
         setBackground("images/world-background.png");
         for (int r = 0; r < world.length; r++) {
             for (int c = 0; c < world[r].length; c++) {
